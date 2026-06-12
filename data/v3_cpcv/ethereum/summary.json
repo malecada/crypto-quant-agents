@@ -1,0 +1,13 @@
+{
+  "coin": "ethereum",
+  "n_splits": 28,
+  "sharpe_mean": -2.9220954343943224,
+  "sharpe_median": -3.006292646303474,
+  "sharpe_std": 1.0490702488824553,
+  "sharpe_min": -5.000388800688463,
+  "sharpe_max": 0.5946004176322568,
+  "var_sr": 0.4680091324113498,
+  "sr_expected_under_null": 1.1389173312791565,
+  "dsr": 1.4586817499042314e-09,
+  "n_trials_for_dsr": 12
+}

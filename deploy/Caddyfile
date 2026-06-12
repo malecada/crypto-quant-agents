@@ -1,0 +1,13 @@
+# TradingAgents live monitor — automatic HTTPS via Let's Encrypt.
+#
+# Deployed on the Hetzner VPS at /etc/caddy/Caddyfile (apt-installed Caddy,
+# systemd unit `caddy.service`). The hostname below is a nip.io wildcard
+# that resolves to the VPS IP with no DNS setup — Let's Encrypt still issues
+# a real trusted cert for it. Swap in an owned domain here if desired.
+#
+# Prerequisites on the VPS: ufw allow 80/tcp and 443/tcp; ta-monitor.service
+# listening on 127.0.0.1:8800.
+46.225.169.184.nip.io {
+    encode gzip
+    reverse_proxy 127.0.0.1:8800
+}

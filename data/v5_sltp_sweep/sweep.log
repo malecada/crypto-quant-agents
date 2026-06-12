@@ -1,0 +1,31 @@
+
+  V5 MIX TP/SL sweep
+  window : 2021-11-07 → 2026-04-15
+  grid   : SL=9 EE=6 TP=7 = 378 cells
+  output : /home/malecada/master_thesis/TradingAgents/data/v5_sltp_sweep
+
+  Loaded 4 coins in 0.2s
+  cell 20/378  SL=0.010 EE=1.000 TP=0.080  port SR=+3.28  elapsed=1s  eta=25s
+  cell 40/378  SL=0.030 EE=1.000 TP=0.050  port SR=+3.30  elapsed=2s  eta=16s
+  cell 60/378  SL=0.100 EE=1.000 TP=0.030  port SR=+3.29  elapsed=2s  eta=13s
+  cell 80/378  SL=0.010 EE=0.005 TP=0.020  port SR=+3.12  elapsed=4s  eta=13s
+  cell 100/378  SL=0.030 EE=0.005 TP=0.010  port SR=+3.14  elapsed=4s  eta=11s
+  cell 120/378  SL=0.100 EE=0.005 TP=0.000  port SR=+3.26  elapsed=5s  eta=10s
+  cell 140/378  SL=0.005 EE=0.010 TP=0.120  port SR=+3.12  elapsed=6s  eta=10s
+  cell 160/378  SL=0.020 EE=0.010 TP=0.080  port SR=+3.16  elapsed=6s  eta=9s
+  cell 180/378  SL=0.070 EE=0.010 TP=0.050  port SR=+3.16  elapsed=7s  eta=7s
+  cell 200/378  SL=0.005 EE=0.015 TP=0.030  port SR=+3.05  elapsed=8s  eta=7s
+  cell 220/378  SL=0.020 EE=0.015 TP=0.020  port SR=+3.09  elapsed=8s  eta=6s
+  cell 240/378  SL=0.070 EE=0.015 TP=0.010  port SR=+3.09  elapsed=9s  eta=5s
+  cell 260/378  SL=0.005 EE=0.020 TP=0.000  port SR=+3.07  elapsed=10s  eta=5s
+  cell 280/378  SL=0.015 EE=0.020 TP=0.120  port SR=+3.09  elapsed=11s  eta=4s
+  cell 300/378  SL=0.050 EE=0.020 TP=0.080  port SR=+3.10  elapsed=11s  eta=3s
+  cell 320/378  SL=0.000 EE=0.030 TP=0.050  port SR=+2.97  elapsed=12s  eta=2s
+  cell 340/378  SL=0.015 EE=0.030 TP=0.030  port SR=+3.06  elapsed=13s  eta=1s
+  cell 360/378  SL=0.050 EE=0.030 TP=0.020  port SR=+3.07  elapsed=13s  eta=1s
+  cell 378/378  SL=0.100 EE=0.030 TP=0.120  port SR=+3.13  elapsed=14s  eta=0s
+
+  Wrote: /home/malecada/master_thesis/TradingAgents/data/v5_sltp_sweep/results.csv  (1890 rows)
+  Wrote: /home/malecada/master_thesis/TradingAgents/data/v5_sltp_sweep/summary.json
+  Baseline cell SR = +3.178 (current canonical V5 MIX = +3.178)
+  Best cell: SL=0.1 EE=1.0 TP=0.0  SR=+3.335  DD=3.6%

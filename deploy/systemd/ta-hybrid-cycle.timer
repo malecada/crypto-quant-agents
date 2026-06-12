@@ -1,0 +1,11 @@
+[Unit]
+Description=Run TradingAgents hybrid cycle daily at 00:35 UTC
+
+[Timer]
+OnCalendar=*-*-* 00:35:00 UTC
+Persistent=true
+RandomizedDelaySec=60
+Unit=ta-hybrid-cycle.service
+
+[Install]
+WantedBy=timers.target

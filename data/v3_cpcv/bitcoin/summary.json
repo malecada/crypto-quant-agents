@@ -1,0 +1,13 @@
+{
+  "coin": "bitcoin",
+  "n_splits": 28,
+  "sharpe_mean": -2.398320334455831,
+  "sharpe_median": -2.312852502689347,
+  "sharpe_std": 0.6508670710990208,
+  "sharpe_min": -4.366591308593691,
+  "sharpe_max": -0.9248903924138924,
+  "var_sr": 0.39816575545828103,
+  "sr_expected_under_null": 1.050502259122377,
+  "dsr": 2.306544996961677e-08,
+  "n_trials_for_dsr": 12
+}

@@ -1,0 +1,27 @@
+[Unit]
+Description=TradingAgents hybrid (quant×LLM) live cycle
+# NOTE: After=ta-cycle.service only orders units started in the same systemd
+# transaction (e.g. boot, explicit combined start); it does NOT enforce ordering
+# between the two independent timer-driven activations (ta-cycle.timer fires at
+# 00:05 UTC, ta-hybrid-cycle.timer fires at 00:35 UTC).  The 30-minute calendar
+# gap is the real sequencing mechanism: if the quant cycle has not yet written
+# predictions for today when the hybrid fires, run_hybrid_cycle() detects the
+# missing cycle and returns status=no_quant_cycle, skipping that day gracefully.
+After=network-online.target ta-cycle.service
+Wants=network-online.target ta-cycle.service
+
+[Service]
+Type=oneshot
+User=tabot
+WorkingDirectory=/opt/tradingagents/repo
+EnvironmentFile=/opt/tradingagents/secrets/.env.trading
+EnvironmentFile=/opt/tradingagents/secrets/.env.hybrid
+Environment=QUANT_DATA_DIR=/opt/tradingagents/data
+Environment=HYBRID_DATA_DIR=/opt/tradingagents/data-hybrid
+Environment=LOG_DIR=/opt/tradingagents/logs
+ExecStartPre=/opt/tradingagents/repo/deploy/preflight.sh
+ExecStart=/opt/tradingagents/venv/bin/python -m tradingagents.execution.live.hybrid_runner --once
+TimeoutStartSec=1800
+Nice=10
+StandardOutput=journal
+StandardError=journal

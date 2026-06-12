@@ -1,0 +1,14 @@
+[Unit]
+Description=TradingAgents weekly V5 parity drift check
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=tabot
+WorkingDirectory=/opt/tradingagents/repo
+EnvironmentFile=/opt/tradingagents/secrets/.env.trading
+Environment=DATA_DIR=/opt/tradingagents/data
+ExecStart=/opt/tradingagents/venv/bin/python -c "from tradingagents.execution.live.rebacktest import run_weekly_parity; from datetime import date, timedelta; from pathlib import Path; today=date.today(); start=today-timedelta(days=7); run_weekly_parity(week_end=today.strftime('%%Y-W%%V'), live_start_date=start.isoformat(), live_end_date=today.isoformat(), output_dir=Path('/opt/tradingagents/data/reports'))"
+# 4h: parity regenerates four pooled LGB walk-forwards before the replay.
+TimeoutStartSec=14400
+Nice=10

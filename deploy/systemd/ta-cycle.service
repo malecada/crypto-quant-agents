@@ -1,0 +1,18 @@
+[Unit]
+Description=TradingAgents daily live cycle
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=tabot
+WorkingDirectory=/opt/tradingagents/repo
+EnvironmentFile=/opt/tradingagents/secrets/.env.trading
+Environment=DATA_DIR=/opt/tradingagents/data
+Environment=LOG_DIR=/opt/tradingagents/logs
+ExecStartPre=/opt/tradingagents/repo/deploy/preflight.sh
+ExecStart=/opt/tradingagents/venv/bin/python -m tradingagents.execution.live.runner --once
+TimeoutStartSec=1800
+Nice=10
+StandardOutput=journal
+StandardError=journal

@@ -1,0 +1,10 @@
+[Unit]
+Description=Trigger weekly re-backtest Sundays 02:00 UTC
+
+[Timer]
+OnCalendar=Sun *-*-* 02:00:00 UTC
+Persistent=true
+Unit=ta-rebacktest.service
+
+[Install]
+WantedBy=timers.target

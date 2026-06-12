@@ -1,0 +1,38 @@
+[Unit]
+Description=TradingAgents live monitoring UI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=tabot
+WorkingDirectory=/opt/tradingagents/repo
+# Quant Binance keys (BINANCE_API_KEY / BINANCE_API_SECRET) come from .env.trading.
+# Monitor-specific vars go in .env.monitor (optional file; '-' prefix = ignored if missing):
+#   TA_MONITOR_PASSWORD=<required — basic-auth password>
+#   QUANT_DATA_DIR=/opt/tradingagents/data         # default: DATA_DIR → data
+#   HYBRID_DATA_DIR=/opt/tradingagents/data/hybrid  # omit to disable hybrid pane
+#   HYBRID_BINANCE_API_KEY=<testnet key for hybrid bot>
+#   HYBRID_BINANCE_API_SECRET=<testnet secret for hybrid bot>
+#   TA_MONITOR_ANCHOR_SR_QUANT=3.18               # default; update after new backtests
+#   TA_MONITOR_ANCHOR_SR_HYBRID=                  # optional; shown on hybrid perf tab
+EnvironmentFile=/opt/tradingagents/secrets/.env.trading
+EnvironmentFile=-/opt/tradingagents/secrets/.env.monitor
+# Hybrid account creds (HYBRID_BINANCE_API_KEY/_SECRET) — same file the hybrid
+# runner uses, so the monitor's hybrid pane needs no duplicated secrets.
+EnvironmentFile=-/opt/tradingagents/secrets/.env.hybrid
+Environment=DATA_DIR=/opt/tradingagents/data
+Environment=QUANT_DATA_DIR=/opt/tradingagents/data
+Environment=HYBRID_DATA_DIR=/opt/tradingagents/data-hybrid
+Environment=LOG_DIR=/opt/tradingagents/logs
+Environment=TA_MONITOR_HOST=127.0.0.1
+Environment=TA_MONITOR_PORT=8800
+ExecStart=/opt/tradingagents/venv/bin/python -m tradingagents.monitor
+Restart=always
+RestartSec=5
+Nice=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

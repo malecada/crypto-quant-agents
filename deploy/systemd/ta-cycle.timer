@@ -1,0 +1,11 @@
+[Unit]
+Description=Trigger ta-cycle daily at 00:05 UTC
+
+[Timer]
+OnCalendar=*-*-* 00:05:00 UTC
+Persistent=true
+RandomizedDelaySec=60
+Unit=ta-cycle.service
+
+[Install]
+WantedBy=timers.target
